@@ -3,6 +3,8 @@ package co.jeferssonnunez
 import java.util.Date
 
 class User {
+	static searchable = true
+	
     String username
     String passwordHash
 	String name

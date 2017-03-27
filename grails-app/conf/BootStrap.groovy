@@ -13,6 +13,11 @@ class BootStrap {
 			superAdminRole.addToPermissions('*:*')
 			superAdminRole.save()
 			
+			def userRole = new Role(name: "USER_ROLE")
+			userRole.addToPermissions("*:*")
+			userRole.save()
+			println "userRole.errors : "+userRole.errors
+			
 			def user = new User(username: "jeferssonnunez", passwordHash: new Sha256Hash("jefer").toHex(),name:"Jefersson",eMail:"jeferssonnunez@gmail.com",
 				device:"web",userType:"re")
 			user.addToRoles(superAdminRole)
