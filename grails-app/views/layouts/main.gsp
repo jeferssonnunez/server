@@ -58,33 +58,33 @@
                 </li>
                  <g:if test="${SecurityUtils.subject.isPermitted('user:index') || SecurityUtils.subject.isPermitted('role:index')}">
 	                <li class="${controllerName == 'user' || controllerName == 'role' ? 'active' : ''}">		
-	                    <a href="index.html"><i class="fa fa-users"></i> <span class="nav-label">Usuarios</span> <span class="fa arrow"></span></a>
+	                    <a href="index.html"><i class="fa fa-users"></i> <span class="nav-label"><g:message code="default.users.label" /></span> <span class="fa arrow"></span></a>
 	                    <ul class="nav nav-second-level collapse">
 	                    	<shiro:hasPermission permission="user:index">
-	                       		<li class="${controllerName == 'user' && actionName == 'index' ? 'active' : ''}"><g:link controller="user" action="index">Usuarios</g:link></li>
+	                       		<li class="${controllerName == 'user' && actionName == 'index' ? 'active' : ''}"><g:link controller="user" action="index"><g:message code="default.users.label" /></g:link></li>
 	                        </shiro:hasPermission>
 	                        <shiro:hasPermission permission="role:index">
-	                        	<li class="${controllerName == 'role' && actionName == 'index' ? 'active' : ''}"><g:link controller="role" action="index">Perfiles</g:link></li>
+	                        	<li class="${controllerName == 'role' && actionName == 'index' ? 'active' : ''}"><g:link controller="role" action="index"><g:message code="default.profiles.label" /></g:link></li>
 	                        </shiro:hasPermission>
 	                    </ul>
 	                </li>
 	            </g:if>
                 <g:if test="${SecurityUtils.subject.isPermitted('notificacion:index')}">
 	                <li class="${controllerName == 'notificacion' ? 'active' : ''}">
-	                    <a href="#"><i class="fa fa-shekel"></i> <span class="nav-label">Notificaciones</span><span class="fa arrow"></span></a>
+	                    <a href="#"><i class="fa fa-shekel"></i> <span class="nav-label"><g:message code="default.notifications.label" /></span><span class="fa arrow"></span></a>
 	                    <ul class="nav nav-second-level collapse">
 	                    	<shiro:hasPermission permission="notificacion:index">
-	                    		<li class="${controllerName == 'notificacion' && actionName == 'index' ? 'active' : ''}"><g:link controller="notificacion" action="index">Notificaciones</g:link></li>
+	                    		<li class="${controllerName == 'notificacion' && actionName == 'index' ? 'active' : ''}"><g:link controller="notificacion" action="index"><g:message code="default.notifications.label" /></g:link></li>
 	                    	</shiro:hasPermission>
 	                    </ul>
 	                </li>
                 </g:if>
                 <g:if test="${SecurityUtils.subject.isPermitted('reporte:index')}">
 	                <li class="${controllerName == 'reporte' ? 'active' : ''}">
-	                    <a href="#"><i class="fa fa-area-chart"></i> <span class="nav-label">Reportes</span><span class="fa arrow"></span></a>
+	                    <a href="#"><i class="fa fa-area-chart"></i> <span class="nav-label"><g:message code="default.reports.label" /></span><span class="fa arrow"></span></a>
 	                    <ul class="nav nav-second-level collapse">
 	                    	<shiro:hasPermission permission="trackingInfo:index">
-	                    		<li class="${controllerName == 'reporte' && actionName == 'index' ? 'active' : ''}"><g:link controller="reporte" action="index">Reporte</g:link></li>
+	                    		<li class="${controllerName == 'reporte' && actionName == 'index' ? 'active' : ''}"><g:link controller="reporte" action="index"><g:message code="default.report.label" /></g:link></li>
 	                    	</shiro:hasPermission>
 	                    </ul>
 	                </li>
@@ -109,7 +109,7 @@
 	            <ul class="nav navbar-top-links navbar-right">
 	                <li>
 	                	<g:link action="signOut" controller="auth">
-							<i class="fa fa-sign-out"></i> Cerrar sesión
+							<i class="fa fa-sign-out"></i> <g:message code="default.logout.label" />
 						</g:link>
 	                </li>
 	            </ul>
@@ -131,7 +131,7 @@
             
             <div class="footer">
                 <div class="pull-right">
-                   	Jefersson Nuñez
+                   	Demo
                 </div>
                 <div>
                     <strong>Copyright</strong> Jefersson Nuñez &copy; 2017

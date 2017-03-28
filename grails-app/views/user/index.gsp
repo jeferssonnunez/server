@@ -30,7 +30,7 @@
 														<div class="col-xs-12 col-sm-12">
 															<div class="input-group">
 																<input type="text" class="input-sm form-control search-query" id="query"
-																		placeholder="Buscar" name="query"
+																		placeholder="<g:message code="default.placeholder.search.label"/>" name="query"
 																		value="${params.query}"> 
 																	<span class="input-group-btn">
 																		<button type="submit" class="btn btn-sm btn-warning">
@@ -47,11 +47,11 @@
 											<div class="container-fluid col-lg-4 pull-right tooltip-demo">
 												
 												<button class="btn btn-success btn-outline" type="button" id="btn-adicionar-usuario"
-															data-toggle="tooltip" title="Crear" data-placement="top" ><i class="fa fa-plus"></i></button>
+															data-toggle="tooltip" title="<g:message code="default.tooltip.create.label"/>" data-placement="top" ><i class="fa fa-plus"></i></button>
 												<button class="btn btn-danger btn-outline" type="button" id="btn-eliminar-usuario"
-															data-toggle="tooltip" title="Eliminar" data-placement="top" ><i class="fa fa-times"></i></button>
+															data-toggle="tooltip" title="<g:message code="default.tooltip.delete.label"/>" data-placement="top" ><i class="fa fa-times"></i></button>
 												<button class="btn btn-info btn-outline" type="button" id="btn-editar-usuario"
-															data-toggle="tooltip" title="Editar" data-placement="top" ><i class="fa fa-pencil"></i></button>
+															data-toggle="tooltip" title="<g:message code="default.tooltip.edit.label"/>" data-placement="top" ><i class="fa fa-pencil"></i></button>
 												
 											</div>
 										
@@ -77,7 +77,7 @@
 	          <div class="modal-content animated bounceInRight">
                   <div class="modal-header">
                       <button type="button" class="close btn-modal-cerrar" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                      <h4 class="modal-title">Crear Usuario</h4>
+                      <h4 class="modal-title"><g:message code="user.create.label" /></h4>
                   </div>
                   <div class="modal-body form-horizontal">
                   
@@ -89,8 +89,8 @@
                   
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-white btn-modal-cerrar" data-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="btn btn-primary btn-guardar-modal">Guardar</button>
+                      <button type="button" class="btn btn-white btn-modal-cerrar" data-dismiss="modal"><g:message code="default.cerrar.label" /></button>
+                      <button type="submit" class="btn btn-primary btn-guardar-modal"><g:message code="default.save.label" /></button>
                   </div>
 	           </div>
           	</g:form>
@@ -104,7 +104,7 @@
 	          <div class="modal-content animated bounceInRight">
 	                  <div class="modal-header">
 	                      <button type="button" class="close btn-modal-cerrar" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	                      <h4 class="modal-title">Editar usuario</h4>
+	                      <h4 class="modal-title"><g:message code="user.edit.label" /></h4>
 	                  </div>
 	                  <div class="modal-body form-horizontal">
 	                  
@@ -116,8 +116,8 @@
 	                  
 	                  </div>
 	                  <div class="modal-footer">
-	                      <button type="button" class="btn btn-white btn-modal-cerrar" data-dismiss="modal">Cerrar</button>
-	                      <button type="submit" class="btn btn-primary btn-guardar-modal">Guardar</button>
+	                      <button type="button" class="btn btn-white btn-modal-cerrar" data-dismiss="modal"><g:message code="default.cerrar.label" /></button>
+	                      <button type="submit" class="btn btn-primary btn-guardar-modal"><g:message code="default.save.label" /></button>
 	                  </div>
 	              </div>
 	          	</g:form>
@@ -130,7 +130,7 @@
 	          <div class="modal-content animated bounceInRight">
 	                  <div class="modal-header">
 	                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	                      <h4 class="modal-title">Eliminar usuario</h4>
+	                      <h4 class="modal-title"><g:message code="user.delete.label" /></h4>
 	                  </div>
 	                  <div class="modal-body form-horizontal">
 	                  
@@ -142,8 +142,8 @@
 	                  
 	                  </div>
 	                  <div class="modal-footer">
-	                      <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
-	                      <button type="button" class="btn btn-danger btn-confirmar-eliminar-usuario btn-guardar-modal">Eliminar</button>
+	                      <button type="button" class="btn btn-white" data-dismiss="modal"><g:message code="default.cerrar.label" /></button>
+	                      <button type="button" class="btn btn-danger btn-confirmar-eliminar-usuario btn-guardar-modal"><g:message code="default.delete.label" /></button>
 	                  </div>
 	              </div>
 	          </div>

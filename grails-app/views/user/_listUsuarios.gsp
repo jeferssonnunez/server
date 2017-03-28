@@ -10,10 +10,10 @@
 				<thead>
 					<tr>
 						<th class="mail-box check-mail"><input type="checkbox" value="" name="" class="i-checks" disabled/></th>
-						<th class="text-center"><g:message code="user.nombreCompleto.label" /></th>
-						<th class="text-center"><g:message code="user.correo.label" /></th>
-						<th class="text-center"><g:message code="user.fechaNacimiento.label" /></th>
-						<th class="text-center"><g:message code="user.descripcion.label" /></th>
+						<th class="text-center"><g:message code="user.name.label" /></th>
+						<th class="text-center"><g:message code="user.email.label" /></th>
+						<th class="text-center"><g:message code="user.username.label" /></th>
+						<th class="text-center"><g:message code="user.description.label" /></th>
 						<th class="text-center"><g:message code="user.roles.label" /></th>
 					
 					</tr>
