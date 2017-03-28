@@ -17,7 +17,7 @@ class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: ['GET', 'POST'],create: ['GET', 'POST'], edit: ['GET', 'POST']]
 
-    def index() {
+    def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 		def userInstanceList = User.list(params)
 		[userInstanceList:userInstanceList,userInstanceCount: User.count()]
@@ -43,11 +43,15 @@ class UserController {
     def create() {
 		switch (request.method) {
 			case 'GET':
-				render template:'form',model:[userInstance:new User(params)]
+				def roleInstanceList = Role.findAll(){
+					name != 'Super Administrador'
+				}
+				render template:'form',model:[userInstance:new User(params),roleInstanceList:roleInstanceList]
 			break
 			case 'POST':
 				def userInstance = new User(params)
 				userInstance.passwordHash = new Sha256Hash(params.passwordHash).toHex()
+				userInstance.userType = 're'
 				if (!userInstance.save(flush: true)) {
 					flash.errors = userInstance.errors
 					render 'error@'
@@ -75,7 +79,10 @@ class UserController {
 							]}
 					return
 				}
-				render template:'form', model:[userInstance:userInstance]
+				def roleInstanceList = Role.findAll(){
+					name != 'Super Administrador'
+				}
+				render template:'form', model:[userInstance:userInstance,roleInstanceList:roleInstanceList]
 			break
 			case 'POST':
 				def userInstance = User.get(params.id)

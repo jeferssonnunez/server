@@ -50,14 +50,6 @@ $(document).ready(function() {
 						allow_single_deselect: true,
 						width: "68%"
 					});
-					 var today = convertDate();
-					 $(".fechaNacimiento").datepicker({
-						autoclose : true,
-						todayHighlight : true,
-						format : 'dd/mm/yyyy',
-						language : 'es',
-						endDate : today
-					});
 					$('#modal-adicionar-usuario').modal('show');
 			},
 			error : function() { // En caso de error en la petición
@@ -133,14 +125,6 @@ $(document).ready(function() {
 							no_results_text: '<i class="fa fa-exclamation-circle"></i> No se encontró nigún resultado <i class="fa fa-hand-o-right"></i>',
 							allow_single_deselect: true,
 							width: "68%"
-						});
-						 var today = convertDate();
-						$(".fechaNacimiento").datepicker({
-							autoclose : true,
-							todayHighlight : true,
-							format : 'dd/mm/yyyy',
-							language : 'es',
-							endDate : today
 						});
 						$('#modal-editar-usuario').modal('show');
 					}else{
@@ -320,13 +304,6 @@ $(document).ready(function() {
     //---------------------------------------------------------------------------------------------------------------------------------
 	
 });
-
-//Da formato a fechas
-function convertDate() {
-	  function pad(s) { return (s < 10) ? '0' + s : s; }
-	  var d = new Date();
-	  return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
-	}
 
 function alert(title,text,type  ){
 	toastr.options = {

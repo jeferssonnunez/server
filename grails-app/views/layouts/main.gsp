@@ -12,12 +12,18 @@
 		
 		<asset:stylesheet src="bootstrap.min.css" />
     	<asset:stylesheet src="font-awesome/css/font-awesome.min.css" />
+    	
+    	<!-- Toastr style -->
+    	<asset:stylesheet src="plugins/toastr/toastr.min.css" />
 		
 		<asset:stylesheet src="animate.css" />
 	    <asset:stylesheet src="style.css" />
 	    
 	    <!-- iCheck -->
     	<asset:stylesheet src="plugins/iCheck/custom.css" />
+    	
+    	<!-- Chosen -->
+    	<asset:stylesheet src="plugins/chosen/chosen.css" />
 		
 		<!-- Mainly scripts -->
 	    <asset:javascript src="jquery-2.1.1.js" />
@@ -25,6 +31,9 @@
 		<asset:javascript src="plugins/metisMenu/jquery.metisMenu.js" />
 		<asset:javascript src="plugins/slimscroll/jquery.slimscroll.min.js" />
 		
+		 <!-- Toastr script -->
+	    <asset:javascript src="plugins/toastr/toastr.min.js" />
+    
 		<!-- iCheck -->
     	<asset:javascript src="plugins/iCheck/icheck.min.js" />
 	
@@ -32,6 +41,8 @@
 	    <asset:javascript src="inspinia.js" />
 	    <asset:javascript src="plugins/pace/pace.min.js" />
 	    
+	    <!-- Chosen -->
+		<asset:javascript src="plugins/chosen/chosen.jquery.js" />
   		
 		<asset:javascript src="application.js"/>
 		<g:layoutHead/>

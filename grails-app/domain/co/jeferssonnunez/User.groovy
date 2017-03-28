@@ -21,7 +21,7 @@ class User {
 	 * android
 	 * ios
 	 * */
-	String device
+	String device = 'web'
 	String country
 	
 	String mobilePhone
