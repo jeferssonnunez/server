@@ -15,12 +15,18 @@
 		
 		<asset:stylesheet src="animate.css" />
 	    <asset:stylesheet src="style.css" />
+	    
+	    <!-- iCheck -->
+    	<asset:stylesheet src="plugins/iCheck/custom.css" />
 		
 		<!-- Mainly scripts -->
 	    <asset:javascript src="jquery-2.1.1.js" />
 	    <asset:javascript src="bootstrap.min.js" />
 		<asset:javascript src="plugins/metisMenu/jquery.metisMenu.js" />
 		<asset:javascript src="plugins/slimscroll/jquery.slimscroll.min.js" />
+		
+		<!-- iCheck -->
+    	<asset:javascript src="plugins/iCheck/icheck.min.js" />
 	
 	    <!-- Custom and plugin javascript -->
 	    <asset:javascript src="inspinia.js" />
