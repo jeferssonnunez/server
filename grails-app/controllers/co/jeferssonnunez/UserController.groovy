@@ -12,9 +12,6 @@ import org.springframework.dao.DataIntegrityViolationException
 class UserController {
 	def searchableService
 	
-	def permisosList = [['CODIGO':'user:*','NOMBRE':'Gestión de usuarios'],['CODIGO':'role:*','NOMBRE':'Gestión de perfiles'],['CODIGO':'sensorRegistry:*','NOMBRE':'Gestión de sensores'],
-		['CODIGO':'verticalGarden:*','NOMBRE':'Gestión de huertas'],['CODIGO':'newsItem:*','NOMBRE':'Gestión de noticias'],['CODIGO':'notification:*','NOMBRE':'Gestión de notificaciones']]
-
     static allowedMethods = [save: "POST", update: "PUT", delete: ['GET', 'POST'],create: ['GET', 'POST'], edit: ['GET', 'POST']]
 
     def index(Integer max) {
@@ -64,10 +61,6 @@ class UserController {
 		}
     }
 
-	def permisos(){
-		render permisosList as JSON
-	}
-
     def edit() {
         switch (request.method) {
 			case 'GET':
@@ -75,7 +68,7 @@ class UserController {
 				if (!userInstance) {
 					render(contentType: 'text/json'){[
 							'ErrorUpdate' : 'true',
-							'error' : 'No se encontró el usuario'
+							'error' : 'No se encontrï¿½ el usuario'
 							]}
 					return
 				}
@@ -88,7 +81,7 @@ class UserController {
 				def userInstance = User.get(params.id)
 				if (!userInstance) {
 					render 'error@'
-					render 'No se encontró el usuario'
+					render 'No se encontrï¿½ el usuario'
 					return
 				}
 				if (params.version) {
@@ -117,7 +110,7 @@ class UserController {
 		if (!userInstance) {
 			render(contentType: 'text/json'){[
 					'ErrorUpdate' : 'true',
-					'error' : 'No se encontró el usuario'
+					'error' : 'No se encontrï¿½ el usuario'
 					]}
 			return
 		}

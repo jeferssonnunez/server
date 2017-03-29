@@ -7,35 +7,107 @@
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#edit-role" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
+		
+		<div class="col-lg-12">
+			<g:hiddenField id="urlBase" name="urlBase" value="${createLink(uri:'/')}" />
+			    <div class="ibox float-e-margins">
+			        <div class="ibox-title">
+			            <h3>
+							<g:message code="edit.role.label" />
+						</h3>
+			            <div class="ibox-tools">
+			            </div>
+			        </div>
+			        <div class="ibox-content ibox-heading">
+			           <g:if test="${flash.message}">
+							<div class="alert alert-info alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert">
+									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+								</button>
+								${flash.message}
+							</div>
+						</g:if>
+						<div class="container-fluid">
+							
+							
+							<div class="modal-body form-horizontal">
+                  				<g:hasErrors bean="${roleInstance}">
+									<ul class="errors" role="alert">
+										<g:eachError bean="${roleInstance}" var="error">
+											<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+										</g:eachError>
+									</ul>
+								</g:hasErrors>
+								<br>
+			                  	<fieldset >
+				                  	<div >
+				                  		<g:form id="${ roleInstance?.id}" action="edit" method="POST" >
+											<g:hiddenField name="version" value="${roleInstance?.version}" />
+											<fieldset class="form">
+												<g:render template="form"/>
+											</fieldset>
+											<br>
+											<fieldset class="text-center">
+												<button id="editButton" class="btn btn-primary" type="submit" >
+													
+													<g:message code="default.button.update.label" default="Actualizar" />
+												</button>
+											</fieldset>
+										</g:form>
+				                  	</div>
+			                  	</fieldset>
+			                  
+			                </div>
+							
+							
+						</div>
+			        </div>
+			    </div>
 		</div>
-		<div id="edit-role" class="content scaffold-edit" role="main">
-			<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<g:hasErrors bean="${roleInstance}">
-			<ul class="errors" role="alert">
-				<g:eachError bean="${roleInstance}" var="error">
-				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-				</g:eachError>
-			</ul>
-			</g:hasErrors>
-			<g:form url="[resource:roleInstance, action:'update']" method="PUT" >
-				<g:hiddenField name="version" value="${roleInstance?.version}" />
-				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-				</fieldset>
-			</g:form>
-		</div>
+	
+		<script type="text/javascript">
+		var urlBase = $("#urlBase").val();
+		$('#permissions').empty();
+		$.ajax({
+			type : 'GET',
+			url : urlBase + 'role/permisos',
+			success : function(data) {
+				
+				$.each(data, function(i, d) {
+	            	$('#permissions').append('<option value="' + d['CODIGO'] + '">' +d['NOMBRE']+ '</option>');	                   
+	            });
+				
+				var permisos = $('#permisos').val();
+				var a = permisos.replace("[" ,'' );
+			
+				var b = a.replace("]" ,'' );
+				
+				var bs = b.replace(/\s+/g, "");
+				
+				var c = bs.split(',');
+				
+				$('#permissions').val(c);
+				
+				$('.chosen-select').chosen({
+					no_results_text: '<i class="fa fa-exclamation-circle"></i> No se encontró nigún resultado <i class="fa fa-hand-o-right"></i>',
+					allow_single_deselect: true,
+					width: "100%"
+				});
+				
+			},
+			error : function() { // En caso de error en la petición
+				alert('Ups!',"Ocurrió un error en la ejecución del proceso...",'error');
+			}
+		});
+		function alert(title,text,type  ){
+			toastr.options = {
+		            closeButton: true,
+		            progressBar: true,
+		            showMethod: 'slideDown',
+		            timeOut: 4000
+		        };
+		    toastr[type](text, title);
+		}
+		</script>
 	</body>
 </html>

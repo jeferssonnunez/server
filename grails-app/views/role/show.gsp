@@ -1,82 +1,153 @@
 
 <%@ page import="co.jeferssonnunez.Role" %>
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'role.label', default: 'Role')}" />
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
-	</head>
-	<body>
-		<a href="#show-role" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="show-role" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<ol class="property-list role">
-			
-				<g:if test="${roleInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="role.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="name"/></span>
-					
-				</li>
+<head>
+<meta name="layout" content="main">
+<g:set var="entityName"
+	value="${message(code: 'role.label', default: 'Perfil')}" />
+<title><g:message code="role.title.label" /></title>
+<asset:stylesheet src="plugins/sweetalert/sweetalert.css" />
+</head>
+<body>
+
+	<div class="col-lg-12">
+	<g:hiddenField id="urlBase" name="urlBase" value="${createLink(uri:'/')}" />
+	    <div class="ibox float-e-margins">
+	        <div class="ibox-title">
+	            <h3>
+					<g:message code="role.header.show.label" />
+				</h3>
+	            <div class="ibox-tools">
+	            </div>
+	        </div>
+	        <div class="ibox-content ibox-heading">
+	           <g:if test="${flash.message}">
+					<div class="alert alert-info alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						${flash.message}
+					</div>
 				</g:if>
-			
-				<g:if test="${roleInstance?.dateCreated}">
-				<li class="fieldcontain">
-					<span id="dateCreated-label" class="property-label"><g:message code="role.dateCreated.label" default="Date Created" /></span>
-					
-						<span class="property-value" aria-labelledby="dateCreated-label"><g:formatDate date="${roleInstance?.dateCreated}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${roleInstance?.lastUpdated}">
-				<li class="fieldcontain">
-					<span id="lastUpdated-label" class="property-label"><g:message code="role.lastUpdated.label" default="Last Updated" /></span>
-					
-						<span class="property-value" aria-labelledby="lastUpdated-label"><g:formatDate date="${roleInstance?.lastUpdated}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${roleInstance?.permissions}">
-				<li class="fieldcontain">
-					<span id="permissions-label" class="property-label"><g:message code="role.permissions.label" default="Permissions" /></span>
-					
-						<span class="property-value" aria-labelledby="permissions-label"><g:fieldValue bean="${roleInstance}" field="permissions"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${roleInstance?.users}">
-				<li class="fieldcontain">
-					<span id="users-label" class="property-label"><g:message code="role.users.label" default="Users" /></span>
-					
-						<g:each in="${roleInstance.users}" var="u">
-						<span class="property-value" aria-labelledby="users-label"><g:link controller="user" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-			</ol>
-			<g:form url="[resource:roleInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${roleInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
-		</div>
-	</body>
+				<div class="container-fluid">
+					<div class="col-md-6 col-sm-6">
+						<dl>
+							<g:if test="${roleInstance?.name}">
+								<dt>
+									<g:message code="role.name.label" default="Nombre" />
+								</dt>
+		
+								<dd>
+									<g:fieldValue bean="${roleInstance}" field="name" />
+								</dd>
+		
+							</g:if>
+						</dl>
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<dl>
+							<g:if test="${roleInstance?.permissions}">
+								<dt>
+									<g:message code="role.permissions.label" default="Permisos" />
+								</dt>
+								<g:each in="${roleInstance.permissions}" status="x" var="permisos">
+									<g:each in="${permisosList}" status="ix" var="permi">
+										<dd>
+											<g:if test="${permi.CODIGO == permisos || permisos == '*:*'}">
+												${permi.NOMBRE }
+											</g:if>
+										</dd>
+									</g:each>
+								</g:each>
+								
+							</g:if>
+						</dl>
+					</div>
+				</div>
+	        </div>
+	        <div class="ibox-content inspinia-timeline">
+	
+	            <div class="timeline-item">
+	                <div class="row">
+	                    
+	                    <g:form>
+							<g:hiddenField name="id" value="${roleInstance?.id}" id="role" />
+							<div class="form-actions">
+								<g:link id="editButton"
+									class="btn btn-info" action="edit"
+									id="${roleInstance?.id}">
+									<i class="fa fa-pencil"></i>
+									<g:message code="default.button.edit.label" default="Editar" />
+								</g:link>
+								<button id="deleteButton" class="btn btn-danger demo4" type="button" >
+									<i class="fa fa-trash"></i>
+									<g:message code="default.button.delete.label" default="Delete" />
+								</button>
+							</div>
+						</g:form>
+	                    
+	                </div>
+	            </div>
+	           
+	           
+	            
+	
+	        </div>
+	    </div>
+	</div>
+	
+<asset:javascript src="plugins/sweetalert/sweetalert.min.js" />
+<script type="text/javascript">
+	var urlBase = $("#urlBase").val();
+	$('.demo4').click(function () {
+		var title = '<g:message code="default.sure.delete.label"/>'
+		var text = '<g:message code="default.text.delete.label"/>'
+		var confirmButtonText = '<g:message code="default.confirmButtonText.label"/>'
+		var cancelButtonText = '<g:message code="default.cancelButtonText.label"/>'
+	    swal({
+	                title: title,
+	                text: text,
+	                type: "warning",
+	                showCancelButton: true,
+	                confirmButtonColor: "#DD6B55",
+	                confirmButtonText: confirmButtonText,
+	                cancelButtonText: cancelButtonText,
+	                closeOnConfirm: false,
+	                closeOnCancel: false },
+	            function (isConfirm) {
+	                if (isConfirm) {
+	                    swal('<g:message code="default.deleted.label"/>', '<g:message code="default.deleted.text.label"/>', "success");
+	                    $.ajax({
+	            			type:'POST',
+	            			url : urlBase + 'role/delete',
+	            			data : {'id':$('#role').val()},
+	            			success : function(data) {
+	            				if (!data.ErrorUpdate) {
+	            					setTimeout($(location).attr('href', urlBase+'role/index'), 500);
+	            				}else{
+	            					alert('Ups!',data.error,'error');
+	            				}
+	            			},
+	            			error : function() { // En caso de error en la petición
+	            				alert('Ups!',"Ocurrió un error en la ejecución del proceso...",'error');
+	            			}
+	            		});
+	                } else {
+	                    swal('<g:message code="default.cancelled.label"/>', '<g:message code="default.cancelled.text.label"/>', "error");
+	                }
+	            });
+	});
+	function alert(title,text,type  ){
+		toastr.options = {
+	            closeButton: true,
+	            progressBar: true,
+	            showMethod: 'slideDown',
+	            timeOut: 4000
+	        };
+	    toastr[type](text, title);
+	}
+</script>
+</body>
 </html>
+

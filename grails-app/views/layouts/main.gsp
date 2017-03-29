@@ -75,7 +75,13 @@
 	                       		<li class="${controllerName == 'user' && actionName == 'index' ? 'active' : ''}"><g:link controller="user" action="index"><g:message code="default.users.label" /></g:link></li>
 	                        </shiro:hasPermission>
 	                        <shiro:hasPermission permission="role:index">
-	                        	<li class="${controllerName == 'role' && actionName == 'index' ? 'active' : ''}"><g:link controller="role" action="index"><g:message code="default.profiles.label" /></g:link></li>
+	                        	<li class="${controllerName == 'role' ? 'active' : ''}">
+		                        	<a href="#" ><g:message code="default.profiles.label" /><span class="fa arrow"></span></a>
+		                            <ul class="nav nav-third-level">
+		                                <li class="${controllerName == 'role' && actionName == 'index' ? 'active' : ''}"><g:link controller="role" action="index"><g:message code="default.profiles.list.label" /></g:link></li>
+		                                <li class="${controllerName == 'role' && actionName == 'create' ? 'active' : ''}"><g:link controller="role" action="create"><g:message code="default.profiles.create.label" /></g:link></li>
+		                            </ul>
+	                            </li>
 	                        </shiro:hasPermission>
 	                    </ul>
 	                </li>
