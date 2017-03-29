@@ -17,7 +17,7 @@
 			            <div class="ibox-tools">
 			            </div>
 			        </div>
-			        <div class="ibox-content ibox-heading">
+			        <div class="ibox-content ">
 			           <g:if test="${flash.message}">
 							<div class="alert alert-info alert-dismissible" role="alert">
 								<button type="button" class="close" data-dismiss="alert">
@@ -75,7 +75,7 @@
 				$('.chosen-select').chosen({
 					no_results_text: '<i class="fa fa-exclamation-circle"></i> No se encontró nigún resultado <i class="fa fa-hand-o-right"></i>',
 					allow_single_deselect: true,
-					width: "68%"
+					width: "67%"
 				});
 				
 			},

@@ -14,7 +14,7 @@ class BootStrap {
 			superAdminRole.save()
 			
 			def userRole = new Role(name: "USER_ROLE")
-			userRole.addToPermissions("*:*")
+			userRole.addToPermissions("*:index")
 			userRole.save()
 			println "userRole.errors : "+userRole.errors
 			

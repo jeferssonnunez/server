@@ -31,7 +31,11 @@
 						<td class="text-center">${fieldValue(bean: userInstance, field: "eMail")}</td>
 						<td></td>
 						<td class="text-center">${fieldValue(bean: userInstance, field: "description")}</td>
-						<td class="text-center">${userInstance?.roles?.name}</td>
+						<td class="text-center">
+							<g:each in="${userInstance?.roles}" status="x" var="role">
+								${role.name },
+							</g:each>
+						</td>
 					
 					</tr>
 				</g:each>

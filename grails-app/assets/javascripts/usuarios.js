@@ -43,14 +43,18 @@ $(document).ready(function() {
 			type : 'GET',
 			url : urlBase + 'user/create',
 			success : function(data) {
-					$('#div-content-form-create-usuario').html(data);
-					$('#params-query').val($('#query').val());
-					 $('.chosen-select').chosen({
-						no_results_text: '<i class="fa fa-exclamation-circle"></i> No se encontró nigún resultado <i class="fa fa-hand-o-right"></i>',
-						allow_single_deselect: true,
-						width: "68%"
-					});
-					$('#modal-adicionar-usuario').modal('show');
+					if(data == 'You do not have permission to access this page.'){
+						alert('Ups!',data,'error');
+					}else{
+						$('#div-content-form-create-usuario').html(data);
+						$('#params-query').val($('#query').val());
+						 $('.chosen-select').chosen({
+							no_results_text: '<i class="fa fa-exclamation-circle"></i> No se encontró nigún resultado <i class="fa fa-hand-o-right"></i>',
+							allow_single_deselect: true,
+							width: "68%"
+						});
+						$('#modal-adicionar-usuario').modal('show');
+					}
 			},
 			error : function() { // En caso de error en la petición
 				alert('Ups!',"Ocurrió un error en la ejecución del proceso...",'error');

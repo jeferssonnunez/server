@@ -73,7 +73,6 @@
 <div class="form-group ${hasErrors(bean: userInstance, field: 'roles', 'error')} ">
 	<label for="roles" class="col-sm-4 control-label">
 		<g:message code="user.roles.label" default="Perfiles" />
-		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-8">
 		<g:select name="roles" from="${roleInstanceList}" multiple="true" data-placeholder="Ninguno" optionKey="id" optionValue="name" value="${userInstance?.roles*.id}" class="chosen-select"/>
