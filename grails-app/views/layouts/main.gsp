@@ -1,4 +1,5 @@
 <%@ page import="org.apache.shiro.SecurityUtils"%>
+<%@ page import="co.jeferssonnunez.User" %>
 
 <!DOCTYPE html>
 <html>
@@ -56,11 +57,15 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                          
-                             </span>
+                         	<img alt="image" class="img-circle" src="${assetPath(src: 'default-user-image.png')}" style="width:30%;" />
+                         </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> 
-                            
+                            	<strong class="font-bold">
+	                            	<g:if test="${User.findByUsername(SecurityUtils.subject.principal)}">
+		                        			${User.findByUsername(SecurityUtils.subject.principal)?.name}
+		                      		 </g:if>
+                            	</strong>
                              </span></span> </a>
                     </div>
                     <div class="logo-element">
