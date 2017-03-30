@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class UserController {
 	def searchableService
+	def FileUploadService
 	
     static allowedMethods = [save: "POST", update: "PUT", delete: ['GET', 'POST'],create: ['GET', 'POST'], edit: ['GET', 'POST']]
 
@@ -127,5 +128,86 @@ class UserController {
 					]}
 			return
 		}
+	}
+	
+	def subirImagen(imagenFile){
+		FileUploadService.uploadFile(imagenFile)
+	}
+	
+	def updatePhoto(){
+		def res = [:]
+		
+		def userInstance = User.findByUsername(params.username)
+		if (!userInstance) {
+			res['status'] = "error"
+			res['message'] = "No se encontró el usuario"
+			render res as JSON
+			return
+		}
+		//Subir foto
+		def foto = request.getFile('file')
+		if(foto){
+			//Borrar imagen anterior
+			def webrootDir
+			if(userInstance?.urlPhoto){
+				def file
+				if (GrailsUtil.environment == "production") {
+					webrootDir = '/usr/share/tomcat/webapps/img'
+					file = new File(webrootDir,userInstance?.urlPhoto.split("img")[1])
+				}else{
+					webrootDir = servletContext.getRealPath("assets") //app directory
+					file = new File(webrootDir,userInstance?.urlPhoto.split("assets")[1])
+				}
+				file.delete()
+			}
+			//Guardar imagen perfil
+			webrootDir = servletContext.getRealPath("/") //app directory
+			params.url = subirImagen(foto)
+			
+			userInstance.urlPhoto = params.url
+			
+			if (!userInstance.save(flush: true)) {
+				res['status'] = "error"
+				res['message'] = "No se pudo actualizar la foto"
+				render res as JSON
+				return
+			}
+
+			res['status'] = "success"
+			res['message'] = "Se guardó la foto"
+			res['urlPhoto'] = params.url
+		}else{
+			res['status'] = "error"
+			res['message'] = "No hay foto"
+		}
+		
+		render res as JSON
+		return
+	}
+	
+	def editProfile(){
+		def res = [:]
+		
+		def userInstance = User.findByUsername(params.username)
+		if (!userInstance) {
+			res['status'] = "error"
+			res['message'] = "No se encontró el usuario"
+			render res as JSON
+			return
+		}
+		
+		userInstance.properties = params
+		
+		if (!userInstance.save(flush: true)) {
+			res['status'] = "error"
+			res['message'] = "No se pudo editar el perfil"
+			render res as JSON
+			return
+		}
+		
+		res['status'] = "success"
+		res['message'] = "Se editó satisfactoriamente"
+		
+		render res as JSON
 	}
 }
