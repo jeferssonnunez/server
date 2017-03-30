@@ -85,6 +85,9 @@ class UserController {
 					render 'No se encontr� el usuario'
 					return
 				}
+				if(!params.roles){
+					params.roles = null
+				}
 				if (params.version) {
 					def version = params.version.toLong()
 					if (userInstance.version > version) {

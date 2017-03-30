@@ -133,6 +133,15 @@ class RoleController {
 					]}
 			return
 		}
+		
+		def user = roleInstance.users
+		if(user){
+			render(contentType: 'text/json'){[
+				'ErrorUpdate' : 'true',
+				'error' : 'El perfil no pudo ser eliminado por que hay un usuario asociado'
+				]}
+			return
+		}
 	
 		try {
 			roleInstance.delete(flush: true)

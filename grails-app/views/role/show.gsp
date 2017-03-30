@@ -117,20 +117,20 @@
 	                closeOnCancel: false },
 	            function (isConfirm) {
 	                if (isConfirm) {
-	                    swal('<g:message code="default.deleted.label"/>', '<g:message code="default.deleted.text.label"/>', "success");
 	                    $.ajax({
 	            			type:'POST',
 	            			url : urlBase + 'role/delete',
 	            			data : {'id':$('#role').val()},
 	            			success : function(data) {
 	            				if (!data.ErrorUpdate) {
-	            					setTimeout($(location).attr('href', urlBase+'role/index'), 500);
+	            					swal('<g:message code="default.deleted.label"/>', '<g:message code="default.deleted.text.label"/>', "success");
+	            					setTimeout($(location).attr('href', urlBase+'role/index'), 1000);
 	            				}else{
-	            					alert('Ups!',data.error,'error');
+	            					swal('<g:message code="default.error.label"/>', data.error , "error");
 	            				}
 	            			},
 	            			error : function() { // En caso de error en la petición
-	            				alert('Ups!',"Ocurrió un error en la ejecución del proceso...",'error');
+	            				swal('<g:message code="default.error.label"/>','<g:message code="default.error.ajax.label"/>' ,'error');
 	            			}
 	            		});
 	                } else {
@@ -138,15 +138,6 @@
 	                }
 	            });
 	});
-	function alert(title,text,type  ){
-		toastr.options = {
-	            closeButton: true,
-	            progressBar: true,
-	            showMethod: 'slideDown',
-	            timeOut: 4000
-	        };
-	    toastr[type](text, title);
-	}
 </script>
 </body>
 </html>
