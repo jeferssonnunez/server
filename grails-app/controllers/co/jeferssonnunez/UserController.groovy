@@ -7,7 +7,7 @@ import grails.converters.JSON
 import grails.transaction.Transactional
 import org.apache.shiro.crypto.hash.Sha256Hash
 import org.springframework.dao.DataIntegrityViolationException
-
+import grails.util.GrailsUtil
 
 class UserController {
 	def searchableService
@@ -50,6 +50,14 @@ class UserController {
 				def userInstance = new User(params)
 				userInstance.passwordHash = new Sha256Hash(params.passwordHash).toHex()
 				userInstance.userType = 're'
+				//Subir foto
+				def foto = request.getFile('foto')
+				if(foto){
+					//Guardar imagen perfil
+					params.url = subirImagen(foto)
+					userInstance.urlPhoto = params.url
+				}
+				
 				if (!userInstance.save(flush: true)) {
 					flash.errors = userInstance.errors
 					render 'error@'
@@ -95,6 +103,28 @@ class UserController {
 						return
 					}
 				}
+				
+				//Subir foto
+				def foto = request.getFile('foto')
+				if(foto){
+					//Borrar imagen anterior
+					def webrootDir
+					if(userInstance?.urlPhoto){
+						def file
+						if (GrailsUtil.environment == "production") {
+							webrootDir = '/usr/share/tomcat/webapps/img'
+							file = new File(webrootDir,userInstance?.urlPhoto.split("img")[1])
+						}else{
+							webrootDir = servletContext.getRealPath("assets") //app directory
+							file = new File(webrootDir,userInstance?.urlPhoto.split("assets")[1])
+						}
+						file.delete()
+					}
+					//Guardar imagen perfil
+					params.url = subirImagen(foto)
+					userInstance.urlPhoto = params.url
+				}
+				
 				userInstance.properties = params
 				
 				if (!userInstance.save(flush: true)) {

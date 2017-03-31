@@ -7,6 +7,8 @@ $(document).ready(function() {
         radioClass: 'iradio_square-green'
     });
     
+    var cameraPng;
+	var imgPng = $('#link-src-camera').attr('href');
     
     /* VALIDA QUE SOLO SE SELECCIONE UN CHECKBOX A LA VEZ */
     /**********************************************************************************************************************************/
@@ -53,6 +55,8 @@ $(document).ready(function() {
 							allow_single_deselect: true,
 							width: "68%"
 						});
+						cameraPng = $('body #blah').attr('src');
+						$('body #blah').css('width','10em');
 						$('#modal-adicionar-usuario').modal('show');
 					}
 			},
@@ -66,11 +70,11 @@ $(document).ready(function() {
 	//DETECCIÓN DEL FORMULARIO CREAR USUARIO
     //---------------------------------------------------------------------------------------------------------------------------------
 	$("form[name='form-create-usuario']").submit(function(event){
-		$('.btn-guardar-modal').attr('disabled',true);
-		$.ajax({
+		//$('.btn-guardar-modal').attr('disabled',true);
+		var options = {
 			type : 'POST',
 			url : urlBase + 'user/create',
-			data : $(this).serialize(),
+			//data : $(this).serialize(),
 			success : function(data) {
 				if(data.split('@')[0] == 'error'){
 					alert('Ups!',data.split('@')[1],'error');
@@ -89,7 +93,8 @@ $(document).ready(function() {
 			error : function() { // En caso de error en la petición
 				alert('Ups!',"Ocurrió un error en la ejecución del proceso...",'error');
 			}
-		});
+		};
+		$("form[name='form-create-usuario']").ajaxSubmit(options);
 		event.preventDefault();
 		return false;
 	});
@@ -130,6 +135,8 @@ $(document).ready(function() {
 							allow_single_deselect: true,
 							width: "68%"
 						});
+						cameraPng = $('body #blah').attr('src');
+						$('body #blah').css('width','10em');
 						$('#modal-editar-usuario').modal('show');
 					}else{
 						alert('Ups!',data.error,'error');
@@ -149,10 +156,10 @@ $(document).ready(function() {
     //---------------------------------------------------------------------------------------------------------------------------------
 	$("form[name='form-edit-user']").submit(function(event){
 		$('.btn-guardar-modal').attr('disabled',true);
-		$.ajax({
+		var options = {
 			type : 'POST',
 			url : urlBase + 'user/edit/'+idUsuario,
-			data : $(this).serialize(),
+			//data : $(this).serialize(),
 			success : function(data) {
 				if(data.split('@')[0] == 'error'){
 					alert('Ups!',data.split('@')[1],'error');
@@ -176,8 +183,8 @@ $(document).ready(function() {
 			error : function() { // En caso de error en la petición
 				alert('Ups!',"Ocurrió un error en la ejecución del proceso...",'error');
 			}
-		});
-		
+		};
+		$("form[name='form-edit-user']").ajaxSubmit(options);
 		event.preventDefault();
 		return false;
 	});
@@ -307,7 +314,37 @@ $(document).ready(function() {
 	});
     //---------------------------------------------------------------------------------------------------------------------------------
 	
+	//PINTAR IMAGEN EN MODAL
+	//----------------------------------------------------------------------------------------------------------------------------------
+	$("body").on('click', '.enlance-modal-foto', function() {
+		var src = $(this).attr('src');
+		console.log("modal opens");
+		$('#imagen-modal-foto').attr('src',src);
+		$('#modal-foto').modal('show');
+	});
+	//----------------------------------------------------------------------------------------------------------------------------------
+	
+	//CARGAR IMAGEN SELECCIONADA POR EL USUARIO
+	$("body").on('change', '#urlFoto', function() {
+		$('#div-content-fotos').html('<image src="'+imgPng+'" class="img-thumbnail" id="blah" alt="your image" style="width:10px; " />');
+		$('body #blah').css('width','10em');
+	   readURL(this);
+	});
+	
 });
+
+function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      $('body #blah').attr('src', e.target.result);
+		  $('body #blah').css('width','10em');
+	      $('body #blah').show();
+	    }
+	    reader.readAsDataURL(input.files[0]);
+	    //document.getElementById("uploadFile").value = input.files[0].name;
+	  }
+	}
 
 function alert(title,text,type  ){
 	toastr.options = {

@@ -57,7 +57,17 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                         	<img alt="image" class="img-circle" src="${assetPath(src: 'default-user-image.png')}" style="width:30%;" />
+                    		<g:if test="${User.findByUsername(SecurityUtils.subject.principal)}">
+                       				<g:if test="${User.findByUsername(SecurityUtils.subject.principal)?.urlPhoto}">
+		                         		<img alt="image" class="img-circle" src="${User.findByUsername(SecurityUtils.subject.principal).urlPhoto}" style="width:30%;" />
+                        			</g:if>
+                        			<g:else>
+		                         		<img alt="image" class="img-circle" src="${assetPath(src: 'default-user-image.png')}" style="width:30%;" />
+		                         	</g:else>
+                      		 </g:if>
+                      		 <g:else>
+                         		<img alt="image" class="img-circle" src="${assetPath(src: 'default-user-image.png')}" style="width:30%;" />
+                         	</g:else>
                          </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> 

@@ -96,3 +96,21 @@
 		<g:textField name="address" class="input-sm col-xs-8 col-sm-8" value="${userInstance?.address}"/>
 	</div>
 </div>
+
+<div class="form-group ${hasErrors(bean: userInstance, field: 'urlPhoto', 'error')} ">
+	<label for="urlPhoto" class="col-sm-4 control-label">
+		<g:message code="user.urlPhoto.label" default="Foto" />
+		
+	</label>
+	<div class="col-sm-8">
+		<input type="file" id="urlFoto" name="foto" accept="image/jpeg">
+		<div id="div-content-fotos">
+			<g:if test="${userInstance?.urlPhoto}" >
+				<img src="${resource(file: userInstance.urlPhoto)}" class="img-thumbnail" />
+			</g:if>
+			<g:else>
+				<asset:image src="camera.png" id="blah" alt="your image" style="width:10px; " />
+			</g:else>
+		</div>
+	</div>
+</div>

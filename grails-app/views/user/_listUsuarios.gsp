@@ -29,7 +29,18 @@
 						<td class="text-center">${fieldValue(bean: userInstance, field: "name")}</td>
 					
 						<td class="text-center">${fieldValue(bean: userInstance, field: "eMail")}</td>
-						<td></td>
+						<td class="text-center">
+							<g:if test="${userInstance?.urlPhoto }">
+								<a href="#modal-foto" data-toggle="modal">
+									<img src="${userInstance.urlPhoto}" class="img-thumbnail enlance-modal-foto"
+				                              style="width: 2em;" />
+				            	</a>
+							</g:if>
+							<g:else>
+								<img src="${g.resource(dir: 'assets/images', file: 'default-user-image.png', absolute: true)}" class="img-thumbnail enlance-modal-foto"
+			                              style="width: 2em;" />
+							</g:else>
+						</td>
 						<td class="text-center">${fieldValue(bean: userInstance, field: "description")}</td>
 						<td class="text-center">
 							<g:each in="${userInstance?.roles}" status="x" var="role">

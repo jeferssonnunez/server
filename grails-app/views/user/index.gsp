@@ -11,6 +11,7 @@
 		
 		<div class="row">
 			<g:hiddenField id="urlBase" name="urlBase" value="${createLink(uri:'/')}" />
+			<link href="${g.resource(dir: 'assets/images', file: 'camera.png', absolute: true)}" id="link-src-camera"/>
 		    <div class="col-lg-12">
 		        <div class="row">
 		        	<div class="ibox float-e-margins">
@@ -73,7 +74,7 @@
 	  <!-- MODAL CREAR 	USUARIO -->   
       <div class="modal inmodal" id="modal-adicionar-usuario" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
-          	<g:form class="form-horizontal" name="form-create-usuario" autocomplete="off">
+          	<g:form class="form-horizontal" name="form-create-usuario" autocomplete="off" enctype="multipart/form-data">
 	          <div class="modal-content animated bounceInRight">
                   <div class="modal-header">
                       <button type="button" class="close btn-modal-cerrar" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -100,7 +101,7 @@
 	<!-- MODAL EDITAR USUARIO -->   
       <div class="modal inmodal" id="modal-editar-usuario" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
-          	<g:form class="form-horizontal" name="form-edit-user" method="post" action="create" autocomplete="off">
+          	<g:form class="form-horizontal" name="form-edit-user" autocomplete="off" enctype="multipart/form-data">
 	          <div class="modal-content animated bounceInRight">
 	                  <div class="modal-header">
 	                      <button type="button" class="close btn-modal-cerrar" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -149,7 +150,31 @@
 	          </div>
 	      </div>
 	      
-	
+	      <!-- MODAL FOTO USUARIO -->   
+      <div class="modal inmodal" id="modal-foto" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+	          <div class="modal-content animated bounceInRight">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                      <h4 class="modal-title"><g:message code="user.photo.label" /></h4>
+                  </div>
+                  <div class="modal-body form-horizontal">
+                  
+                  	<div class="text-center">
+						<img id="imagen-modal-foto"
+							class="editable img-responsive editable-empty img-thumbnail"
+							src="" />
+					</div>
+                  
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-white" data-dismiss="modal"><g:message code="default.cerrar.label" /></button>
+                  </div>
+              </div>
+          </div>
+      </div>
+	      
+	<asset:javascript src="jquery.form.js" />
 	<asset:javascript src="usuarios.js" />
 	</body>
 </html>

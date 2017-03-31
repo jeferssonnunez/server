@@ -20,7 +20,7 @@ class FileUploadService {
 		} else {
 			def servletContext = ServletContextHolder.servletContext
 			storagePath = servletContext.getRealPath('assets')
-			linkBase = 'http://192.168.0.100:8093/assets'
+			linkBase = 'http://192.168.0.108:8093/assets'
 		}
 
 
