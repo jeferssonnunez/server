@@ -42,7 +42,7 @@ grails.project.dependency.resolution = {
         grailsCentral()
         mavenCentral()
 		
-		mavenRepo "http://repo.grails.org/grails/core" //Se añadio para el searchable plugin
+		mavenRepo "http://repo.grails.org/grails/core" //Se aï¿½adio para el searchable plugin
 		
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
@@ -68,6 +68,7 @@ grails.project.dependency.resolution = {
 		compile ":twitter-bootstrap:3.3.4"
 		compile ":shiro:1.2.1"
 		compile ":searchable:0.6.9"
+		compile ":mail:1.0.7"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.17"

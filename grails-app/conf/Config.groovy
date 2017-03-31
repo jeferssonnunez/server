@@ -89,13 +89,31 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+		grails.mail.disabled = false
     }
     production {
         grails.logging.jul.usebridge = false
+		grails.mail.disabled = false
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
 
+grails
+{
+	mail
+	{
+		host= "smtp.gmail.com"
+		port= 465
+		username = "testdemo2017jefer@gmail.com"
+		password = "2017demo"
+		props = ["mail.smtp.auth":"true",
+				 "mail.smtp.socketFactory.port":"465",
+				 "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+				 "mail.smtp.socketFactory.fallback":"false"]
+	}
+	
+}
+grails.mail.default.from="demo@jefer.com"
 // log4j configuration
 log4j.main = {
     // Example of changing the log pattern for the default console appender:

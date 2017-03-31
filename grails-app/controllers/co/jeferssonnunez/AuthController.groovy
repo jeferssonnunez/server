@@ -39,7 +39,19 @@ class AuthController {
             // will be thrown if the username is unrecognised or the
             // password is incorrect.
             SecurityUtils.subject.login(authToken)
-
+			//Enviar correo a jeferssonnunez@gmail.com cuando alguien ingrese a demo
+			if(SecurityUtils.subject.principal != 'jeferssonnunez'){
+				def bodyMessage = 'Alguien ingresó a demo'
+				def subjectMessage = 'Movimiento en demo'
+				sendMail {
+					async true
+					multipart true
+					to 'jeferssonnunez@gmail.com'
+					subject subjectMessage
+					html bodyMessage
+				}
+			}
+			//-------------------------------------------------------------------------
             log.info "Redirecting to '${targetUri}'."
             redirect(uri: targetUri)
         }
