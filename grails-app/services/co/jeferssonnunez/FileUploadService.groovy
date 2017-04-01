@@ -14,8 +14,8 @@ class FileUploadService {
 		String storagePath = ""
 		String linkBase = ""
 		if (GrailsUtil.environment == "production") {
-			storagePath = '/usr/share/tomcat/webapps/img'
-			linkBase = 'http://www.veggiesapp.com/img'
+			storagePath = '/img'
+			linkBase = 'http://www.jeferssonnunez.tk/img'
 
 		} else {
 			def servletContext = ServletContextHolder.servletContext

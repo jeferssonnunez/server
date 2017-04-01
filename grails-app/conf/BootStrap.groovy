@@ -18,7 +18,7 @@ class BootStrap {
 			userRole.save()
 			println "userRole.errors : "+userRole.errors
 			
-			def user = new User(username: "jeferssonnunez", passwordHash: new Sha256Hash("jefer").toHex(),name:"Jefersson",eMail:"jeferssonnunez@gmail.com",
+			def user = new User(username: "jeferssonnunez", passwordHash: new Sha256Hash("margara45").toHex(),name:"Jefersson",eMail:"jeferssonnunez@gmail.com",
 				device:"web",userType:"re")
 			user.addToRoles(superAdminRole)
 			user.save()

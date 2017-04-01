@@ -33,7 +33,7 @@ grails.mime.types = [ // the first one is the default format
 
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
-grails.app.context = '/jeferssonnunez'
+grails.app.context = '/'
 
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
@@ -90,7 +90,7 @@ environments {
     development {
         grails.logging.jul.usebridge = true
 		grails.mail.disabled = false
-		grails.serverURL='http://localhost:8093/jeferssonnunez'
+		grails.serverURL='http://localhost:8093'
     }
 	test{
 		grails.logging.jul.usebridge = true
